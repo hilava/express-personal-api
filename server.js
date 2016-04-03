@@ -7,11 +7,18 @@ var express = require('express'),
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//code for Nathan's masher
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 /************
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -34,20 +41,117 @@ app.get('/', function homepage(req, res) {
  * JSON API Endpoints
  */
 
+//Show (GET) profile data
+ app.get('/api/profile', function(req,res){
+ console.log('get api profile');
+   var profileJson = {
+                        name: "Hila Vaisler",
+                        github_link: "https://github.com/hilava",
+                        linkedin_link:"https://www.linkedin.com/in/hila-vaisler-534b9a7",
+                        image:"http://i.imgur.com/PEtCW8H.jpg",
+                        current_city: "Sunnyvale",
+                        past_cities: [{ name: 'Givataim', country: 'Israel' },
+                                      { name: 'Philadelphia', country: 'USA' },
+                                      { name: 'Sunnyvale', country: 'USA' }],
+                        countries_visited:['Israel', 'USA', 'Thailand', 'Italy', 'Cypress', 'Spain', 'Dominican Republic', 'Mexico',
+                                          'France','Venezuela', 'Ecuador', 'Guatemala', 'Belize'],
+                        languages: ['English', 'Hebrew']
+                      };
+  res.json(profileJson);
+ });
+
+//GET all movies
+app.get('/api/movies', function (req,res){
+  console.log('get all movies');
+  db.Movie.find(function(err, movies){
+    if(err) { return console.log("error: " + err); }
+    console.log("found movies: " + movies);
+    res.json(movies);
+  });
+
+});
+
+//GET movie by id
+app.get('/api/movies/:id', function(req, res){
+  console.log('get movie by id');
+  db.Movie.findById(req.params.id, function(err, movie){
+    if(err) {return console.log("error: " +err);}
+    console.log("found movie: " + movie);
+    res.json(movie);
+  });
+});
+
+//Add new movie (POST)
+app.post('/api/movies', function(req, res){
+  console.log('add new movie');
+  //create new movie with form data ('req.body')
+  var newMovie = new db.Movie({
+    name: req.body.name,
+    genre: req.bode.genre,
+    year: req.body.year,
+    director: req.body.director,
+    favorite_actor: req. body.actor,
+    image: req.body.image
+  });
+  //save newMovie to db
+  newMovie.save(function(err, movies){
+    if (err){ return console.log("save error: " + err);}
+    console.log("movie saved: " + movie);
+    res.json(movie);
+  });
+});
+
+//Delete movie
+app.delete('/api/movies/:id', function(req, res){
+  console.log('delete movie');
+  var movieId = req.params.id;
+  db.Movie.findOneAndRemove({ _id: movieId }, function(err, movie){
+    if(err){ return console.log("error deleting: " + err);}
+    console.log("movie deleted: " + movie);
+    res.json(movie);
+  });
+});
+
+//Update (PUT) movie
+app.put('/api/movies/:id', function(req, res){
+  console.log('update movie');
+  // get movie id from url params (`req.params`)
+  var movieId = req.params.id;
+  // find movie in db by id
+  Movie.findById(movieId, function(err, foundMovie){
+    if(err) {res.status(500).json({error: err.message});}
+    //update movie attributes
+    foundMovie.name= req.body.name;
+    foundMovie.genre = req.bode.genre;
+    foundMovie.year = req.body.year;
+    foundMovie.director = req.body.director;
+    foundMovie.favorite_actor = req. body.actor;
+    foundMovie.image = req.body.image;
+    //save updated movie in db
+    foundMovie.save(function(err, savedMovie){
+      if(err){res.status(500).json({error: err.message});}
+      console.log("saved movie: " + savedMovie);
+      res.json(savedMovie);
+    });
+  });
+});
+
+
+//GET documentaion of API endpoints
 app.get('/api', function api_index(req, res) {
-  // TODO: Document all your api endpoints below
   res.json({
-    woops_i_has_forgot_to_document_all_my_endpoints: true, // CHANGE ME ;)
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentation_url: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
-    base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    documentation_url: "https://github.com/hilava/express_self_api/README.md",
+    base_url: "http://strawberry-surprise-58996.herokuapp.com",
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "My profile data"},
       {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
     ]
-  })
+  });
 });
+
+
 
 /**********
  * SERVER *
