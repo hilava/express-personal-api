@@ -51,11 +51,12 @@ app.get('/', function homepage(req, res) {
                         image:"http://i.imgur.com/PEtCW8H.jpg",
                         current_city: "Sunnyvale",
                         past_cities: [{ name: 'Givataim', country: 'Israel' },
-                                      { name: 'Philadelphia', country: 'USA' },
-                                      { name: 'Sunnyvale', country: 'USA' }],
-                        countries_visited:['Israel', 'USA', 'Thailand', 'Italy', 'Cypress', 'Spain', 'Dominican Republic', 'Mexico',
-                                          'France','Venezuela', 'Ecuador', 'Guatemala', 'Belize'],
-                        languages: ['English', 'Hebrew']
+                                      { name: 'Philadelphia', country: 'USA' }],
+                        countries_visited:[{name: 'Israel'}, {name: 'USA'}, {name: 'Thailand'}, {name: 'Italy'},
+                                          {name: 'Cypress'}, {name: 'Spain'}, {name: 'Dominican Republic'},
+                                          {name: 'Mexico'},{name: 'France'},{name: 'Venezuela'}, {name: 'Ecuador'},
+                                          {name: 'Guatemala'},{name: 'Belize'}],
+                        languages: [{name: 'English'}, {name: 'Hebrew'}]
                       };
   res.json(profileJson);
  });
@@ -87,10 +88,10 @@ app.post('/api/movies', function(req, res){
   //create new movie with form data ('req.body')
   var newMovie = new db.Movie({
     name: req.body.name,
-    genre: req.bode.genre,
+    genre: req.body.genre,
     year: req.body.year,
     director: req.body.director,
-    favorite_actor: req. body.actor,
+    favorite_actor: req.body.actor,
     image: req.body.image
   });
   //save newMovie to db
@@ -122,10 +123,10 @@ app.put('/api/movies/:id', function(req, res){
     if(err) {res.status(500).json({error: err.message});}
     //update movie attributes
     foundMovie.name= req.body.name;
-    foundMovie.genre = req.bode.genre;
+    foundMovie.genre = req.body.genre;
     foundMovie.year = req.body.year;
     foundMovie.director = req.body.director;
-    foundMovie.favorite_actor = req. body.actor;
+    foundMovie.favorite_actor = req.body.actor;
     foundMovie.image = req.body.image;
     //save updated movie in db
     foundMovie.save(function(err, savedMovie){
@@ -146,7 +147,11 @@ app.get('/api', function api_index(req, res) {
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "My profile data"},
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api/movies", description: "Show all movies"},
+      {method: "GET", path: "/api/movies/:id", description: "Show one movie by id"},
+      {method: "POST", path: "/api/movies/:id", description: "Create a new movie"},
+      {method: "DELETE", path: "/api/movies:id", description: "Delete movie by id"},
+      {method: "PUT", path: "/api/movies/:id", description: "Update movie by id"},
     ]
   });
 });
