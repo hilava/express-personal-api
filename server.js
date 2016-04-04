@@ -48,7 +48,7 @@ app.get('/', function homepage(req, res) {
                         name: "Hila Vaisler",
                         github_link: "https://github.com/hilava",
                         linkedin_link:"https://www.linkedin.com/in/hila-vaisler-534b9a7",
-                        image:"http://i.imgur.com/PEtCW8H.jpg",
+                        image:"https://i.imgur.com/PEtCW8H.jpg",
                         current_city: "Sunnyvale",
                         past_cities: [{ name: 'Givataim', country: 'Israel' },
                                       { name: 'Philadelphia', country: 'USA' }],

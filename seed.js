@@ -10,7 +10,7 @@ var movie_list = [
             year: 1990,
             director: 'Garry Marshall',
             favorite_actor: 'Julia Roberts',
-            image:"http://www.moviepilot.de/files/images/0562/0873/Pretty_Woman_4.jpg"
+            image:"https://www.moviepilot.de/files/images/0562/0873/Pretty_Woman_4.jpg"
          },
          {
             name: 'The Breakfast Club',
@@ -26,7 +26,7 @@ var movie_list = [
             year: 1986,
             director: 'Tony Scott',
             favorite_actor: 'Tom Cruise',
-            image:"http://www.tourismnewwestminster.com/wp-content/uploads/2014/06/Top-Gun.jpg"
+            image:"https://www.tourismnewwestminster.com/wp-content/uploads/2014/06/Top-Gun.jpg"
          },
          {
             name: 'Some Like It Hot',
@@ -34,7 +34,7 @@ var movie_list = [
             year: 1959,
             director: 'Billy Wilder',
             favorite_actor: 'Tony Curtis',
-            image:"http://images2.fanpop.com/image/photos/9400000/Classic-Wallpaper-classic-movies-9498517-1024-768.jpg"
+            image:"https://images2.fanpop.com/image/photos/9400000/Classic-Wallpaper-classic-movies-9498517-1024-768.jpg"
          },
            {
            name: 'Spaceballs',
@@ -50,7 +50,7 @@ var movie_list = [
           year: 1994,
           director: 'Quentin Tarantino',
           favorite_actor: 'Samuel L. Jackson',
-          image:"http://www.moviepilot.de/files/images/0254/1585/pulp-fiction-cover.jpg"
+          image:"https://www.moviepilot.de/files/images/0254/1585/pulp-fiction-cover.jpg"
         },
         {
          name: 'The Hunger Games',
@@ -58,7 +58,7 @@ var movie_list = [
          year: 2012,
          director: 'Gary Ross',
          favorite_actor: 'Jennifer Lawrence',
-         image:"http://www.ew.com/sites/default/files/i/2011/12/01/Illustrated-Movie-Companion_510_0.jpg"
+         image:"https://www.ew.com/sites/default/files/i/2011/12/01/Illustrated-Movie-Companion_510_0.jpg"
         },
         {
           name: 'Ghost',
@@ -66,7 +66,7 @@ var movie_list = [
           year: 1990,
           director: 'Jerry Zucker',
           favorite_actor: 'Patrick Swayze',
-          image:"http://1.bp.blogspot.com/-INTFEwdEhzM/TxVXXJY446I/AAAAAAAAJn4/_3lccW6iLYM/s1600/Demi_Moore.jpg"
+          image:"https://1.bp.blogspot.com/-INTFEwdEhzM/TxVXXJY446I/AAAAAAAAJn4/_3lccW6iLYM/s1600/Demi_Moore.jpg"
         },
         {
          name: 'The Goonies',
@@ -74,7 +74,7 @@ var movie_list = [
          year: 1985,
          director: 'Richard Donner',
          favorite_actor: 'Sean Astin',
-         image: "http://3.bp.blogspot.com/-16KXvs0VeRM/UH1dbV5sApI/AAAAAAAAU2c/Ne7xkgppCcE/s640/The+Goonies.jpg"
+         image: "https://3.bp.blogspot.com/-16KXvs0VeRM/UH1dbV5sApI/AAAAAAAAU2c/Ne7xkgppCcE/s640/The+Goonies.jpg"
         },
         ];
 
