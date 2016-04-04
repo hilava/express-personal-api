@@ -1,7 +1,7 @@
 body {
   color: white;
   font-family: Helvetica, Arial, sans-serif;
-  background-image: url("https://images.metroscenes.com/images/2012/black-and-white-city-skylines/black_and_white_san_francisco_metroscenes.com_04.jpg");
+  background-color: gray; 
   background-position: center;
   background-size: cover;
 
