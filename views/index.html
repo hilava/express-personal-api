@@ -57,9 +57,10 @@
                 <h3>Favorite Movies: </h3>
                 <div class="col-xs-5">
                   <button id="showMoviesBtn" type="button" class="btn btn-default">Show All Movies</button>
+                  <br>
                 <script id="movies-template" type="text/x-handlebars-template">
                   {{#each movies}}
-                    {{movieName}}  {{movieGenre}}
+                    {{name}}
                     <br>
                   {{/each}}
                 </script>

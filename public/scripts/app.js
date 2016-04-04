@@ -67,10 +67,8 @@ function showMovieSuccess(json){
   // compile handlebars template
   var source = $('#movies-template').html();
   var template = Handlebars.compile(source);
-
-  var movieName = json.name;
-  var movieGenre = json.genre;
-  var moviesHtml = template({movieName: movieName, movieGenre: movieGenre});
+  console.log("Movie json: " , json);
+  var moviesHtml = template({movies: json});
   console.log("moviesHtml: " + moviesHtml);
   $('#moviesTarget').append(moviesHtml);
 }
